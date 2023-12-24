@@ -52,12 +52,16 @@ services:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 172.20.0.8
 
 #Docker Networks:
 networks:
   app-network:
-    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+    # driver: bridge
 
 #Volumes
 volumes:
